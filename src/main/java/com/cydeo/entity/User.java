@@ -3,6 +3,7 @@ package com.cydeo.entity;
 import com.cydeo.enums.Gender;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ public class User extends BaseEntity {
     private String passWord;
     private boolean enabled;
     private String phone;
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private Role role;
     @Enumerated(EnumType.STRING)
