@@ -31,7 +31,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectDTO getByProjectCode(String code) {
-        return null;
+        //Project dto = projectRepository.findByProjectCode(code);
+        return projectMapper.convertToDTO(projectRepository.findByProjectCode(code));
     }
 
     @Override
