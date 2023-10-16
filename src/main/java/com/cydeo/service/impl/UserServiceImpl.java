@@ -66,4 +66,11 @@ public class UserServiceImpl implements UserService {
         user.setIsDeleted(true);
         userRepository.save(user);
     }
+
+    @Override
+    public List<User> findManagers() {
+
+        //List<User> mangerList = userRepository.
+        return null;
+    }
 }
