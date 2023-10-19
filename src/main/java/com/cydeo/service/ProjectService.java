@@ -10,5 +10,5 @@ public interface ProjectService {
     ProjectDTO getByProjectCode(String code);
     void save(ProjectDTO dto);
     void update(ProjectDTO dto);
-    void delete(ProjectDTO dto);
+    void delete(String id);
 }
