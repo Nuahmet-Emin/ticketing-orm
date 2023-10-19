@@ -61,35 +61,35 @@ public class ProjectController {
         projectService.complete(projectcode);
         return "redirect:/project/create";
     }
-//
-//    @GetMapping("/update/{projectcode}")
-//    public String editProject(@PathVariable("projectcode") String projectcode, Model model) {
-//
-//        model.addAttribute("project", projectService.findById(projectcode));
-//        model.addAttribute("projects", projectService.findAll());
-//        model.addAttribute("managers", userService.findManagers());
-//
-//        return "/project/update";
-//
-//    }
-//
-//    @PostMapping("/update")
-//    public String updateProject(@Valid @ModelAttribute("project") ProjectDTO project, BindingResult bindingResult, Model model) {
-//
-//        if (bindingResult.hasErrors()) {
-//
-//            model.addAttribute("projects", projectService.findAll());
-//            model.addAttribute("managers", userService.findManagers());
-//
-//            return "/project/update";
-//
-//        }
-//
-//        projectService.update(project);
-//        return "redirect:/project/create";
-//
-//    }
-//
+
+    @GetMapping("/update/{projectcode}")
+    public String editProject(@PathVariable("projectcode") String projectcode, Model model) {
+
+        model.addAttribute("project", projectService.getByProjectCode(projectcode));
+        model.addAttribute("projects", projectService.listAllProjects());
+        model.addAttribute("managers", userService.listAllByRole("manager"));
+
+        return "/project/update";
+
+    }
+
+    @PostMapping("/update")
+    public String updateProject(@Valid @ModelAttribute("project") ProjectDTO project, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("projects", projectService.listAllProjects());
+            model.addAttribute("managers", userService.listAllByRole("manager"));
+
+            return "/project/update";
+
+        }
+
+        projectService.update(project);
+        return "redirect:/project/create";
+
+    }
+
 //    @GetMapping("/manager/project-status")
 //    public String getProjectByManager(Model model) {
 //
