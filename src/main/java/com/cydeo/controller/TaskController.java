@@ -6,7 +6,10 @@ import com.cydeo.service.TaskService;
 import com.cydeo.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/task")
@@ -27,29 +30,29 @@ public class TaskController {
 
         model.addAttribute("task", new TaskDTO());
         model.addAttribute("projects", projectService.listAllProjects());
-        model.addAttribute("employees", userService.listAllUser());
+        model.addAttribute("employees", userService.listAllByRole("employee"));
         model.addAttribute("tasks", taskService.listAllTask());
 
         return "task/create";
     }
-//
-//    @PostMapping("/create")
-//    public String insertTask(@Valid @ModelAttribute("task") TaskDTO task, BindingResult bindingResult, Model model) {
-//
-//        if (bindingResult.hasErrors()) {
-//
-//            model.addAttribute("projects", projectService.findAll());
-//            model.addAttribute("employees", userService.findEmployees());
-//            model.addAttribute("tasks", taskService.findAll());
-//
-//            return "/task/create";
-//
-//        }
-//
-//        taskService.save(task);
-//
-//        return "redirect:/task/create";
-//    }
+
+    @PostMapping("/create")
+    public String insertTask(@Valid @ModelAttribute("task") TaskDTO task, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("projects", projectService.listAllProjects());
+            model.addAttribute("employees", userService.listAllByRole("employee"));
+            model.addAttribute("tasks", taskService.listAllTask());
+
+            return "/task/create";
+
+        }
+
+        taskService.save(task);
+
+        return "redirect:/task/create";
+    }
 //
 //    @GetMapping("/delete/{taskId}")
 //    public String deleteTask(@PathVariable("taskId") Long taskId) {
