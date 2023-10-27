@@ -7,7 +7,7 @@ import java.util.List;
 public interface TaskService {
 
     List<TaskDTO> listAllTask();
-    TaskDTO findByID(Long id);
+    TaskDTO findById(Long id);
 
     void save(TaskDTO dto);
     void update(TaskDTO dto);
