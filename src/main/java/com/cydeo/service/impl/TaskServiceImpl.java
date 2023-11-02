@@ -83,6 +83,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public void completeByProject(ProjectDTO dto) {
+        List<TaskDTO> list = listAllByProject(dto);
+        list.forEach(taskDTO->{
+            taskDTO.setTaskStatus(Status.COMPLETE);
+            update(taskDTO);
+        });
+    }
+    @Override
     public void deleteByProject(ProjectDTO dto) {
        List<TaskDTO> list = listAllByProject(dto);
        list.forEach(taskDTO-> delete(taskDTO.getId()));
