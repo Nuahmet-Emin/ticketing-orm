@@ -71,6 +71,7 @@ public class ProjectServiceImpl implements ProjectService {
         project.setIsDeleted(true);
         project.setProjectCode(project.getProjectCode() + "_" + project.getId());
         projectRepository.save(project);
+        taskService.deleteByProject(projectMapper.convertToDTO(project));
 
     }
 
