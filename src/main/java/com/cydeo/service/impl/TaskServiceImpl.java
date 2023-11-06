@@ -122,6 +122,12 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<TaskDTO> readAllByAssignedEmployee(User assignedEmployee) {
+        List<Task> list = taskRepository.findAllByAssignedEmployee(assignedEmployee);
+        return list.stream().map(taskMapper::convertToDTO).collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteByProject(ProjectDTO dto) {
        List<TaskDTO> list = listAllByProject(dto);
        list.forEach(taskDTO-> delete(taskDTO.getId()));
