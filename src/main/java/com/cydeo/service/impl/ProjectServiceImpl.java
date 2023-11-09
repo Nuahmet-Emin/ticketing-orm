@@ -91,7 +91,7 @@ public class ProjectServiceImpl implements ProjectService {
     public List<ProjectDTO> listAllProjectDetails() {
 
         //samantha@manager.com
-        UserDTO currentUserDTO = userService.findByUserName("samantha@manager.com");
+        UserDTO currentUserDTO = userService.findByUserName("harold@manager.com");
         User user = userMapper.convertToEntity(currentUserDTO);
         List<Project> projectList = projectRepository.findAllByAssignedManager(user);
 
