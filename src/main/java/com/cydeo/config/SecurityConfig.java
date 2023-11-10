@@ -22,10 +22,13 @@ public class SecurityConfig {
         List<UserDetails> userList = new ArrayList<>();
         userList.add(
                 new User("mike",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"))));
-                new User("nurahmet",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_MANAGER")));
-
+        userList.add(
+                new User("nurahmet",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_MANAGER"))));
                 return new InMemoryUserDetailsManager(userList);
     }
+
+
+
 
 
 }
