@@ -29,7 +29,7 @@ public class UserPrinciple implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return this.user.getPassWord();
     }
 
     @Override
